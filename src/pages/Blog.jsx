@@ -1,29 +1,18 @@
-import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
-const Blog = () => {
+export default function Blog() {
   const { blogs } = useLoaderData();
-  console.log(blogs);
-
   return (
     <ul>
-      {blogs.length > 0 ? (
-        blogs.map((blogs) => (
-          <li key={blogs.id}>
-            <link to={"/blog/${blog.id}"}>{blogs.title}</link>
+      {blogs?.length ? (
+        blogs.map((b) => (
+          <li key={b.id}>
+            <Link to={`/blog/${b.id}`}>{b.title}</Link>
           </li>
         ))
       ) : (
-        <li>No blogs found </li>
+        <li>No blogs found</li>
       )}
     </ul>
   );
-};
-
-export default Blog;
-
-export const loaderBlogs = async () => {
-  const data = await fetch("https://jsonplaceholdet.typicode.com/posts");
-  const blogs = await data.json();
-  return { blogs };
-};
+}

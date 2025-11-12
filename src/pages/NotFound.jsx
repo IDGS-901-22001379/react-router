@@ -1,19 +1,16 @@
-import React from "react";
 import { Link, useRouteError } from "react-router-dom";
 
-const NotFound = () => {
+export default function NotFound() {
   const error = useRouteError();
-  console.log(error);
 
   return (
-    <div>
-      NotFound
+    <div className="container py-5">
       <h1>404</h1>
-      <p>Page nor found</p>
-      <p> {error.statusText || error.message} </p>
-      <Link to="/">Black home</Link>
+      <p>Page not found</p>
+      <p>{error?.statusText || error?.message}</p>
+      <Link to="/" className="btn btn-primary">
+        Back home
+      </Link>
     </div>
   );
-};
-
-export default NotFound;
+}
